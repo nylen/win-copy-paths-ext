@@ -1,1 +1,7 @@
+*.suo
+*.ncb
+*.user
+*.tlb
 bin
+Debug*
+Release*
