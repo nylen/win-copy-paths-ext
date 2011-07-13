@@ -1,0 +1,261 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: CopyPathExt - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+
+
+
+<h3>Results</h3>
+CopyPathExt.dll - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: CopyPathExt - Win32 Unicode Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\TEMP\RSPB49.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_USRDLL" /D "_UNICODE" /Fp"DebugU/CopyPathExt.pch" /Yu"stdafx.h" /Fo"DebugU/" /Fd"DebugU/" /FD /GZ /c 
+"D:\Development\Projects\Utilities\CopyPathExt\CopyPathContextMenu.cpp"
+]
+Creating command line "cl.exe @C:\TEMP\RSPB49.tmp" 
+Creating temporary file "C:\TEMP\RSPB4A.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:yes /pdb:"DebugU/CopyPathExt.pdb" /debug /machine:I386 /def:".\CopyPathExt.def" /out:"bin/DebugU/CopyPathExt.dll" /implib:"DebugU/CopyPathExt.lib" /pdbtype:sept 
+.\DebugU\CopyPathContextMenu.obj
+.\DebugU\CopyPathExt.obj
+.\DebugU\StdAfx.obj
+.\DebugU\CopyPathExt.res
+]
+Creating command line "link.exe @C:\TEMP\RSPB4A.tmp"
+Creating temporary file "C:\TEMP\RSPB4B.bat" with contents
+[
+@echo off
+if "%OS%"=="" goto NOTNT
+if not "%OS%"=="Windows_NT" goto NOTNT
+regsvr32 /s /c ".\bin\DebugU\CopyPathExt.dll"
+echo regsvr32 exec. time > ".\DebugU\regsvr32.trg"
+goto end
+:NOTNT
+echo Warning : Cannot register Unicode DLL on Windows 95
+:end
+]
+Creating command line "C:\TEMP\RSPB4B.bat"
+Compiling...
+CopyPathContextMenu.cpp
+Linking...
+   Creating library DebugU/CopyPathExt.lib and object DebugU/CopyPathExt.exp
+<h3>Output Window</h3>
+Performing registration
+Creating temporary file "C:\TEMP\RSPB4F.bat" with contents
+[
+@echo off
+StampVer -nopad -v.\bin\DebugU\CopyPathExt.dll.inf -i4 -j4 ".\bin\DebugU\CopyPathExt.dll"
+]
+Creating command line "C:\TEMP\RSPB4F.bat"
+
+Stamping .\bin\DebugU\CopyPathExt.dll: FileVersion=1.0.0.40 ProductVersion=1.0.0.40 
+
+
+
+<h3>Results</h3>
+CopyPathExt.dll - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: CopyPathExt - Win32 Release MinSize--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\TEMP\RSPB50.tmp" with contents
+[
+/nologo /MT /W3 /GX /O1 /D "_MBCS" /D "_ATL_DLL" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /Fp"ReleaseMinSize/CopyPathExt.pch" /Yu"stdafx.h" /Fo"ReleaseMinSize/" /Fd"ReleaseMinSize/" /FD /c 
+"D:\Development\Projects\Utilities\CopyPathExt\CopyPathContextMenu.cpp"
+]
+Creating command line "cl.exe @C:\TEMP\RSPB50.tmp" 
+Creating temporary file "C:\TEMP\RSPB51.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"ReleaseMinSize/CopyPathExt.pdb" /machine:I386 /def:".\CopyPathExt.def" /out:"bin/ReleaseMinSize/CopyPathExt.dll" /implib:"ReleaseMinSize/CopyPathExt.lib" 
+.\ReleaseMinSize\CopyPathContextMenu.obj
+.\ReleaseMinSize\CopyPathExt.obj
+.\ReleaseMinSize\StdAfx.obj
+.\ReleaseMinSize\CopyPathExt.res
+]
+Creating command line "link.exe @C:\TEMP\RSPB51.tmp"
+Creating temporary file "C:\TEMP\RSPB52.bat" with contents
+[
+@echo off
+regsvr32 /s /c ".\bin\ReleaseMinSize\CopyPathExt.dll"
+echo regsvr32 exec. time > ".\ReleaseMinSize\regsvr32.trg"
+]
+Creating command line "C:\TEMP\RSPB52.bat"
+Compiling...
+CopyPathContextMenu.cpp
+Linking...
+   Creating library ReleaseMinSize/CopyPathExt.lib and object ReleaseMinSize/CopyPathExt.exp
+LINK : warning LNK4089: all references to "OLEAUT32.dll" discarded by /OPT:REF
+<h3>Output Window</h3>
+Performing registration
+Creating temporary file "C:\TEMP\RSPB56.bat" with contents
+[
+@echo off
+StampVer -nopad -v.\bin\ReleaseMinSize\CopyPathExt.dll.inf -i4 -j4 ".\bin\ReleaseMinSize\CopyPathExt.dll"
+]
+Creating command line "C:\TEMP\RSPB56.bat"
+
+Stamping .\bin\ReleaseMinSize\CopyPathExt.dll: FileVersion=1.0.0.36 ProductVersion=1.0.0.36 
+
+
+
+<h3>Results</h3>
+CopyPathExt.dll - 0 error(s), 1 warning(s)
+<h3>
+--------------------Configuration: CopyPathExt - Win32 Release MinDependency--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\TEMP\RSPB57.tmp" with contents
+[
+/nologo /MT /W3 /GX /O1 /D "_MBCS" /D "_ATL_STATIC_REGISTRY" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /Fp"ReleaseMinDependency/CopyPathExt.pch" /Yu"stdafx.h" /Fo"ReleaseMinDependency/" /Fd"ReleaseMinDependency/" /FD /c 
+"D:\Development\Projects\Utilities\CopyPathExt\CopyPathContextMenu.cpp"
+]
+Creating command line "cl.exe @C:\TEMP\RSPB57.tmp" 
+Creating temporary file "C:\TEMP\RSPB58.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"ReleaseMinDependency/CopyPathExt.pdb" /machine:I386 /def:".\CopyPathExt.def" /out:"bin/ReleaseMinDependency/CopyPathExt.dll" /implib:"ReleaseMinDependency/CopyPathExt.lib" 
+.\ReleaseMinDependency\CopyPathContextMenu.obj
+.\ReleaseMinDependency\CopyPathExt.obj
+.\ReleaseMinDependency\StdAfx.obj
+.\ReleaseMinDependency\CopyPathExt.res
+]
+Creating command line "link.exe @C:\TEMP\RSPB58.tmp"
+Creating temporary file "C:\TEMP\RSPB59.bat" with contents
+[
+@echo off
+regsvr32 /s /c ".\bin\ReleaseMinDependency\CopyPathExt.dll"
+echo regsvr32 exec. time > ".\ReleaseMinDependency\regsvr32.trg"
+]
+Creating command line "C:\TEMP\RSPB59.bat"
+Compiling...
+CopyPathContextMenu.cpp
+Linking...
+   Creating library ReleaseMinDependency/CopyPathExt.lib and object ReleaseMinDependency/CopyPathExt.exp
+<h3>Output Window</h3>
+Performing registration
+Creating temporary file "C:\TEMP\RSPB5D.bat" with contents
+[
+@echo off
+StampVer -nopad -v.\bin\ReleaseMinDependency\CopyPathExt.dll.inf -i4 -j4 ".\bin\ReleaseMinDependency\CopyPathExt.dll"
+]
+Creating command line "C:\TEMP\RSPB5D.bat"
+
+Stamping .\bin\ReleaseMinDependency\CopyPathExt.dll: FileVersion=1.0.0.34 ProductVersion=1.0.0.34 
+
+
+
+<h3>Results</h3>
+CopyPathExt.dll - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: CopyPathExt - Win32 Unicode Release MinSize--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\TEMP\RSPB5E.tmp" with contents
+[
+/nologo /MT /W3 /GX /O1 /D "_UNICODE" /D "_ATL_DLL" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /Fp"ReleaseUMinSize/CopyPathExt.pch" /Yu"stdafx.h" /Fo"ReleaseUMinSize/" /Fd"ReleaseUMinSize/" /FD /c 
+"D:\Development\Projects\Utilities\CopyPathExt\CopyPathContextMenu.cpp"
+]
+Creating command line "cl.exe @C:\TEMP\RSPB5E.tmp" 
+Creating temporary file "C:\TEMP\RSPB5F.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"ReleaseUMinSize/CopyPathExt.pdb" /machine:I386 /def:".\CopyPathExt.def" /out:"bin/ReleaseUMinSize/CopyPathExt.dll" /implib:"ReleaseUMinSize/CopyPathExt.lib" 
+.\ReleaseUMinSize\CopyPathContextMenu.obj
+.\ReleaseUMinSize\CopyPathExt.obj
+.\ReleaseUMinSize\StdAfx.obj
+.\ReleaseUMinSize\CopyPathExt.res
+]
+Creating command line "link.exe @C:\TEMP\RSPB5F.tmp"
+Creating temporary file "C:\TEMP\RSPB60.bat" with contents
+[
+@echo off
+if "%OS%"=="" goto NOTNT
+if not "%OS%"=="Windows_NT" goto NOTNT
+regsvr32 /s /c ".\bin\ReleaseUMinSize\CopyPathExt.dll"
+echo regsvr32 exec. time > ".\ReleaseUMinSize\regsvr32.trg"
+goto end
+:NOTNT
+echo Warning : Cannot register Unicode DLL on Windows 95
+:end
+]
+Creating command line "C:\TEMP\RSPB60.bat"
+Compiling...
+CopyPathContextMenu.cpp
+Linking...
+   Creating library ReleaseUMinSize/CopyPathExt.lib and object ReleaseUMinSize/CopyPathExt.exp
+LINK : warning LNK4089: all references to "OLEAUT32.dll" discarded by /OPT:REF
+<h3>Output Window</h3>
+Performing registration
+Creating temporary file "C:\TEMP\RSPB64.bat" with contents
+[
+@echo off
+StampVer -nopad -v.\bin\ReleaseUMinSize\CopyPathExt.dll.inf -i4 -j4 ".\bin\ReleaseUMinSize\CopyPathExt.dll"
+]
+Creating command line "C:\TEMP\RSPB64.bat"
+
+Stamping .\bin\ReleaseUMinSize\CopyPathExt.dll: FileVersion=1.0.0.34 ProductVersion=1.0.0.34 
+
+
+
+<h3>Results</h3>
+CopyPathExt.dll - 0 error(s), 1 warning(s)
+<h3>
+--------------------Configuration: CopyPathExt - Win32 Unicode Release MinDependency--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\TEMP\RSPB65.tmp" with contents
+[
+/nologo /MT /W3 /GX /O1 /D "_UNICODE" /D "_ATL_STATIC_REGISTRY" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /Fp"ReleaseUMinDependency/CopyPathExt.pch" /Yu"stdafx.h" /Fo"ReleaseUMinDependency/" /Fd"ReleaseUMinDependency/" /FD /c 
+"D:\Development\Projects\Utilities\CopyPathExt\CopyPathContextMenu.cpp"
+]
+Creating command line "cl.exe @C:\TEMP\RSPB65.tmp" 
+Creating temporary file "C:\TEMP\RSPB66.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"ReleaseUMinDependency/CopyPathExt.pdb" /machine:I386 /def:".\CopyPathExt.def" /out:"bin/ReleaseUMinDependency/CopyPathExt.dll" /implib:"ReleaseUMinDependency/CopyPathExt.lib" 
+.\ReleaseUMinDependency\CopyPathContextMenu.obj
+.\ReleaseUMinDependency\CopyPathExt.obj
+.\ReleaseUMinDependency\StdAfx.obj
+.\ReleaseUMinDependency\CopyPathExt.res
+]
+Creating command line "link.exe @C:\TEMP\RSPB66.tmp"
+Creating temporary file "C:\TEMP\RSPB67.bat" with contents
+[
+@echo off
+if "%OS%"=="" goto NOTNT
+if not "%OS%"=="Windows_NT" goto NOTNT
+regsvr32 /s /c ".\bin\ReleaseUMinDependency\CopyPathExt.dll"
+echo regsvr32 exec. time > ".\ReleaseUMinDependency\regsvr32.trg"
+goto end
+:NOTNT
+echo Warning : Cannot register Unicode DLL on Windows 95
+:end
+]
+Creating command line "C:\TEMP\RSPB67.bat"
+Compiling...
+CopyPathContextMenu.cpp
+Linking...
+   Creating library ReleaseUMinDependency/CopyPathExt.lib and object ReleaseUMinDependency/CopyPathExt.exp
+<h3>Output Window</h3>
+Performing registration
+Creating temporary file "C:\TEMP\RSPB6B.bat" with contents
+[
+@echo off
+StampVer -nopad -v.\bin\ReleaseUMinDependency\CopyPathExt.dll.inf -i4 -j4 ".\bin\ReleaseUMinDependency\CopyPathExt.dll"
+]
+Creating command line "C:\TEMP\RSPB6B.bat"
+
+Stamping .\bin\ReleaseUMinDependency\CopyPathExt.dll: FileVersion=1.0.0.38 ProductVersion=1.0.0.38 
+
+
+
+<h3>Results</h3>
+CopyPathExt.dll - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

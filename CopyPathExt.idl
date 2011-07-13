@@ -1,0 +1,28 @@
+// CopyPathExt.idl : IDL source for CopyPathExt.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (CopyPathExt.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(7E419111-13AA-11D3-A831-00104B9E30B5),
+	version(1.0),
+	helpstring("CopyPathExt 1.0 Type Library")
+]
+library COPYPATHEXTLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(7E41911F-13AA-11D3-A831-00104B9E30B5),
+		helpstring("CopyPathContextMenu Class")
+	]
+	coclass CopyPathContextMenu
+	{
+		[default] interface IUnknown;
+	};
+};
