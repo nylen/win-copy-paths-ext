@@ -25,10 +25,16 @@
 //
 STDMETHODIMP CCopyPathContextMenu::QueryContextMenu(HMENU hmenu, UINT indexMenu, UINT idCmdFirst, UINT idCmdLast, UINT uFlags)
 {
-	_TCHAR		strMenuText[30];
+	_TCHAR		strMenuText[40];
+
+	m_MakeCStyleString = ((GetKeyState(VK_CONTROL) & 0x8000) != 0);
+	m_MakeQuotedPath   = ((GetKeyState(VK_SHIFT)   & 0x8000) != 0);
 
 	// Adds our item as ID: (idCmdFirst + ID_COPY_PATH) = idCmdFirst.
-	_stprintf(strMenuText, _T("Copy &Path%s to Clipboard"), (m_listFileNames.size() > 1 ? _T("s") : _T("")));
+	_stprintf(strMenuText, _T("Copy &path%s to clipboard%s"),
+		(m_listFileNames.size() > 1 ? _T("s") : _T("")),
+		(m_MakeCStyleString ? _T(" (C-style)") : (m_MakeQuotedPath ? _T(" (with quotes)") : _T(""))));
+
 	::InsertMenu(hmenu, indexMenu++, MF_STRING | MF_BYPOSITION,
         idCmdFirst + ID_COPY_PATH, strMenuText);
 	return ResultFromScode(MAKE_SCODE(SEVERITY_SUCCESS, FACILITY_NULL, (USHORT)(ID_COPY_PATH + 1)));
@@ -68,9 +74,9 @@ STDMETHODIMP CCopyPathContextMenu::Initialize(LPCITEMIDLIST pidlFolder, LPDATAOB
 			// If the file name is a directory, make sure it has a backslash at the end.
 			if (::GetFileAttributes(strFilePath) & FILE_ATTRIBUTE_DIRECTORY) {
 				int nLen = _tcslen(strFilePath);
-				if (strFilePath[nLen-1] != _T('\\')) {
-					_tcscat(strFilePath, _T("\\"));
-				}
+				//if (strFilePath[nLen-1] != _T('\\')) {
+				//	_tcscat(strFilePath, _T("\\"));
+				//}
 			}
 			// Add the file name to the end of the list.
 			m_listFileNames.push_back(strFilePath);
@@ -97,8 +103,6 @@ STDMETHODIMP CCopyPathContextMenu::InvokeCommand(LPCMINVOKECOMMANDINFO lpici)
 {
 	_TCHAR*		pStrClipboardText = NULL, strTempFileNameBuff[MAX_PATH + 50];
 	_TCHAR		*pCurrent = NULL, *pLast = NULL;
-	BOOLEAN		bMakeCStyleString = ((GetKeyState(VK_CONTROL) & 0x8000) != 0);
-	BOOLEAN		bMakeShortPath = ((GetKeyState(VK_SHIFT) & 0x8000) != 0);
 	int			nFileCount = 0, i;
 
     switch (LOWORD(lpici->lpVerb)) {		
@@ -108,40 +112,43 @@ STDMETHODIMP CCopyPathContextMenu::InvokeCommand(LPCMINVOKECOMMANDINFO lpici)
 		if (nFileCount == 0)
 			return S_OK;
 		
-		// The '+ 50' is so that we provide ample room for double backslashes.
+		// The '+ 50' is so that we provide ample room for double backslashes and quotes.
 		pStrClipboardText = new _TCHAR[nFileCount * (MAX_PATH+50)];
 		pStrClipboardText[0] = _T('\0');
 
 		// Loop through all the files.
 		for (i = 0; i < nFileCount; i++) {
-			// Copy the file name into a temporary buffer.  If the ALT key is down,
-			// convert the long file name to a short one.
-			if (bMakeShortPath) {
-				::GetShortPathName(m_listFileNames.front().data(), strTempFileNameBuff, MAX_PATH + 50);
-			}
-			else {
-				_tcscpy(strTempFileNameBuff, m_listFileNames.front().data());
-			}
+			_tcscpy(strTempFileNameBuff, m_listFileNames.front().data());
 			
 			pLast = strTempFileNameBuff;
+
+			// If the shift key is pressed or the control key is pressed, add quotes to the path.
+			if (m_MakeQuotedPath || m_MakeCStyleString) {
+				_tcscat(pStrClipboardText, _T("\""));
+			}
+
 			// If the control key is pressed, change the path so that all the
 			// backslashes are converted to double backslashes.  This is useful
 			// when pasting a path into C/C++ code, as a single backslash denotes
-			// an escape sequence and a double backslash denotes a literal backslash.				
-			if (bMakeCStyleString) {				
+			// an escape sequence and a double backslash denotes a literal backslash.
+			if (m_MakeCStyleString) {				
 				while ((pCurrent = _tcschr(pLast, _T('\\'))) != NULL) {
 					_tcsncat(pStrClipboardText, pLast, pCurrent - pLast + 1);
 					pLast = pCurrent + 1;
 					_tcscat(pStrClipboardText, _T("\\"));
 				}
-				_tcscat(pStrClipboardText, pLast);
 			}
-			else {
-				_tcscat(pStrClipboardText, pLast);
+			_tcscat(pStrClipboardText, pLast);
+
+			// If the shift key is pressed or the control key is pressed, add quotes to the path.
+			if (m_MakeQuotedPath || m_MakeCStyleString) {
+				_tcscat(pStrClipboardText, _T("\""));
 			}
-			// If this isn't the last file, add a line break before we add the next file name.
-			if (i != (nFileCount - 1))
+
+			// If we have more than one file, add a line break after the file name.
+			if (nFileCount > 1) {
 				_tcscat(pStrClipboardText, _T("\r\n"));
+			}
 
 			m_listFileNames.pop_front();
 		}		
@@ -177,8 +184,6 @@ STDMETHODIMP CCopyPathContextMenu::GetCommandString(UINT idCmd, UINT  uType, UIN
 	HRESULT				hr = E_INVALIDARG; 
 	int					nFileCount = 0;
 	_TCHAR				strFileCount[20], strHelpTextBuff[100];
-	BOOLEAN				bMakeCStyleString = ((GetKeyState(VK_CONTROL) & 0x8000) != 0);
-	BOOLEAN				bMakeShortPath = ((GetKeyState(VK_SHIFT) & 0x8000) != 0);
 	USES_CONVERSION;
 
 	switch (idCmd) {
@@ -190,10 +195,10 @@ STDMETHODIMP CCopyPathContextMenu::GetCommandString(UINT idCmd, UINT  uType, UIN
 			nFileCount = m_listFileNames.size();
 			// Help text looks like "Copies the [full / short] path[s] to the clipboard. [n Objects Selected]"
 			_stprintf(strFileCount, _T("%d Object%s Selected"), nFileCount, (nFileCount > 1 ? _T("s") : _T("")));			
-			_stprintf(strHelpTextBuff, _T("Copies the %s file path%s%s to the clipboard. [%s]"),
-				(bMakeShortPath ? _T("short") : _T("full")),
+			_stprintf(strHelpTextBuff, _T("Copies the%s file path%s%s to the clipboard. [%s]"),
+				(m_MakeQuotedPath || m_MakeCStyleString ? _T(" quoted") : _T("")),
 				(nFileCount > 1 ? _T("s") : _T("")),
-				(bMakeCStyleString ? _T(" (C-Style)") : _T("")), strFileCount);
+				(m_MakeCStyleString ? _T(" (C-style)") : _T("")), strFileCount);
 
 			if ((uType & GCS_HELPTEXTW) == GCS_HELPTEXTW) {
 				wcsncpy((LPWSTR)pszName, T2W(strHelpTextBuff), cchMax);

@@ -54,6 +54,9 @@ END_COM_MAP()
 private:
 	typedef std::basic_string<_TCHAR>		string;	
 	std::list<string>						m_listFileNames;
+
+	BOOLEAN		m_MakeCStyleString;
+	BOOLEAN		m_MakeQuotedPath;
 };
 
 #endif //__COPYPATHCONTEXTMENU_H_
