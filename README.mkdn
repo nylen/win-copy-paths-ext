@@ -1,0 +1,18 @@
+# Windows Copy Path(s) shell extension
+
+Adds a context menu option to Explorer to copy the path(s) of the selected files and/or directories to the clipboard.  Yes, another one.  None of the extensions I could find behaved how I wanted.
+
+The original code for this extension was written by Nick Carruthers and published at http://www.codeproject.com/KB/shell/copypathext.aspx.
+
+Features:
+
+ * Can copy multiple filenames at once
+ * Hold down Shift + right click to copy path(s) in quotes
+ * Hold down Ctrl + right click to copy C-style path(s) in quotes with escaped backslashes
+
+## Installation
+
+A release version is present in the `bin/ReleaseUMinDependency/` folder.  To install it, do the following (you probably need administrative access):
+
+ * Download the `CopyPathExt.dll` file and copy it to `C:\Windows\system32` or a similar system path.
+ * Register the DLL (open a command prompt, change to the directory where you copied the DLL, and type `regsvr32 CopyPathExt.dll`).
