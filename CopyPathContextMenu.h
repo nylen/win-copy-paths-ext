@@ -11,6 +11,8 @@
 #include <shlobj.h>
 #include <list>
 #include <string>
+#include <algorithm>
+#include "alphanum.hpp"
 
 #define ID_COPY_PATH	0
 
@@ -53,6 +55,23 @@ END_COM_MAP()
 
 private:
 	typedef std::basic_string<_TCHAR>		string;	
+
+	struct alphanum_less_str : public std::binary_function<const string&, const string&, bool>
+	{
+		bool operator()(const string& left, const string& right) const
+		{
+			// http://www.codeguru.com/forum/showthread.php?t=231155
+			CT2CA lc(left.c_str()), rc(right.c_str());
+			std::string ls(lc), rs(rc);
+
+			// http://stackoverflow.com/questions/313970/stl-string-to-lower-case
+			std::transform(ls.begin(), ls.end(), ls.begin(), ::tolower);
+			std::transform(rs.begin(), rs.end(), rs.begin(), ::tolower);
+
+			return doj::alphanum_comp(ls, rs) < 0;
+		}
+	};
+
 	std::list<string>						m_listFileNames;
 
 	BOOLEAN		m_MakeCStyleString;

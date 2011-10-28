@@ -108,6 +108,9 @@ STDMETHODIMP CCopyPathContextMenu::InvokeCommand(LPCMINVOKECOMMANDINFO lpici)
     switch (LOWORD(lpici->lpVerb)) {		
 	case ID_COPY_PATH:
 
+		// Sort m_listFileNames
+		m_listFileNames.sort(alphanum_less_str());
+
 		nFileCount = m_listFileNames.size();
 		if (nFileCount == 0)
 			return S_OK;

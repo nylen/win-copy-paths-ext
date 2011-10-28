@@ -4,6 +4,7 @@
 	Version="9.00"
 	Name="CopyPathExt"
 	ProjectGUID="{7577BE58-7840-419E-B99C-011633F1AF53}"
+	RootNamespace="CopyPathExt"
 	Keyword="AtlProj"
 	TargetFrameworkVersion="0"
 	>
@@ -513,7 +514,6 @@
 				Name="VCCustomBuildTool"
 				Description=""
 				CommandLine="if &quot;%OS%&quot;==&quot;&quot; goto NOTNT&#x0D;&#x0A;if not &quot;%OS%&quot;==&quot;Windows_NT&quot; goto NOTNT&#x0D;&#x0A;regsvr32 /s /c &quot;$(TargetPath)&quot;&#x0D;&#x0A;echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;&#x0D;&#x0A;goto end&#x0D;&#x0A;:NOTNT&#x0D;&#x0A;echo Warning : Cannot register Unicode DLL on Windows 95&#x0D;&#x0A;:end&#x0D;&#x0A;"
-				Outputs=""
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -898,6 +898,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\alphanum.hpp"
+				>
+			</File>
 			<File
 				RelativePath="CopyPathContextMenu.h"
 				>
